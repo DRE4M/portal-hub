@@ -1,16 +1,15 @@
 /**
  * Hub Portal Service Configuration
- * OCI IP 기반으로 포트 및 서비스 링크를 손쉽게 변경/추가할 수 있습니다.
+ * OCI IP 및 Nginx 서브패스 기반으로 포트/경로를 손쉽게 변경할 수 있습니다.
  */
 const PORTAL_CONFIG = {
-  // 기본 OCI IP 주소 (사용자 환경에 맞게 변경 가능)
   defaultOciIp: "129.225.197.60",
-  
-  // 포털 제목 및 서브타이틀
   title: "Dev Workspace Portal",
   subtitle: "Oracle Cloud Infrastructure & Microservices Hub",
 
-  // 연결될 서비스 카드리스트
+  // 서브패스(예: /pokemantle, /fastapi) 라우팅 사용 여부
+  useSubpathRouting: true,
+
   services: [
     {
       id: "oci-main",
@@ -19,6 +18,7 @@ const PORTAL_CONFIG = {
       icon: "🌐",
       description: "Oracle Cloud 인프라 메인 웹 서버 및 관리 도구",
       port: 80,
+      path: "/",
       protocol: "http",
       badge: "Active",
       badgeColor: "cyan",
@@ -31,6 +31,7 @@ const PORTAL_CONFIG = {
       icon: "🎮",
       description: "오늘의 포켓몬 맞추기 추리 게임 (Date/Puzzle 오버라이드 지원)",
       port: 3000,
+      path: "/pokemantle/",
       protocol: "http",
       badge: "Game",
       badgeColor: "purple",
@@ -43,6 +44,7 @@ const PORTAL_CONFIG = {
       icon: "⚡",
       description: "FastAPI 비동기 백엔드 연습 및 API 서버",
       port: 8002,
+      path: "/fastapi/",
       protocol: "http",
       badge: "Dev API",
       badgeColor: "emerald",
@@ -55,6 +57,7 @@ const PORTAL_CONFIG = {
       icon: "🚀",
       description: "추가될 새로운 도커 마이크로서비스 또는 웹 프로젝트",
       port: null,
+      path: null,
       protocol: "http",
       badge: "Coming Soon",
       badgeColor: "gray",

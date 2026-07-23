@@ -1,18 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   const config = window.PORTAL_CONFIG || {
     defaultOciIp: "129.225.197.60",
-    title: "Dev Workspace Portal",
-    subtitle: "Oracle Cloud Infrastructure & Microservices Hub",
+    useSubpathRouting: true,
     services: []
   };
 
   const cardsGrid = document.getElementById("cards-grid");
-
-  // 현재 브라우저가 접속한 호스트명 자동 감지 (예: yeardayhour.duckdns.org, 129.225.197.60, localhost 등)
   let currentHost = window.location.hostname;
+  const isFileProtocol = window.location.protocol === "file:";
   
-  // 탐색기에서 file:// 로 직접 열었을 경우 로컬 테스트용 localhost로 기본 자동 지정
-  if (!currentHost || currentHost === "" || currentHost === "null" || window.location.protocol === "file:") {
+  if (!currentHost || currentHost === "" || currentHost === "null" || isFileProtocol) {
     currentHost = "localhost";
   }
 
@@ -27,9 +24,19 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsGrid.innerHTML = "";
 
     config.services.forEach((service) => {
-      const fullUrl = service.port
-        ? `${service.protocol}://${currentHost}:${service.port}`
-        : `${service.protocol}://${currentHost}`;
+      let fullUrl = "#";
+      let displayUrl = "";
+
+      // 로컬 파일이나 localhost 일 경우 포트 기준, 도메인/서버 호스트일 경우 서브패스 기준 라우팅
+      if (config.useSubpathRouting && service.path && !isFileProtocol && currentHost !== "localhost") {
+        fullUrl = `${window.location.protocol}//${currentHost}${service.path}`;
+        displayUrl = `${currentHost}${service.path}`;
+      } else {
+        fullUrl = service.port
+          ? `${service.protocol}://${currentHost}:${service.port}`
+          : `${service.protocol}://${currentHost}`;
+        displayUrl = service.port ? `${currentHost}:${service.port}` : `${currentHost}`;
+      }
 
       const card = document.createElement("a");
       card.className = `service-card ${service.disabled ? "disabled" : ""}`;
@@ -52,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
         <div class="card-footer">
-          <span class="service-url">${service.disabled ? 'Coming soon...' : (service.port ? `${currentHost}:${service.port}` : `${currentHost}`)}</span>
+          <span class="service-url">${service.disabled ? 'Coming soon...' : displayUrl}</span>
           <svg class="arrow-icon" viewBox="0 0 24 24">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
