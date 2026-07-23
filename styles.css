@@ -166,43 +166,15 @@ p.portal-subtitle {
   color: var(--text-secondary);
 }
 
-.ip-input-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--border-color);
-  padding: 6px 12px;
-  border-radius: var(--radius-md);
-}
-
-.ip-input {
-  background: transparent;
-  border: none;
-  outline: none;
-  color: var(--accent-cyan);
+.host-display-badge {
   font-family: 'Outfit', monospace;
   font-size: 0.95rem;
-  font-weight: 600;
-  width: 140px;
-  text-align: center;
-}
-
-.btn-update-ip {
-  background: linear-gradient(135deg, var(--accent-indigo), var(--accent-purple));
-  color: white;
-  border: none;
-  padding: 8px 14px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  padding: 4px 12px;
   border-radius: var(--radius-md);
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition-fast);
-}
-
-.btn-update-ip:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
 }
 
 /* Cards Grid */
