@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dev Workspace Portal | OCI Hub</title>
+  <meta name="description" content="Oracle Cloud Infrastructure 및 Pokemantle, FastAPI 마이크로서비스 관문을 통합 지원하는 개발 허브 포털">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Animated Background Glow Effects -->
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+
+  <div class="container">
+    <!-- Header Section -->
+    <header>
+      <div class="header-badge">
+        <span class="status-dot"></span>
+        OCI Cloud Server Active
+      </div>
+      <h1 class="portal-title">Dev Workspace Portal</h1>
+      <p class="portal-subtitle">
+        Oracle Cloud Infrastructure와 마이크로서비스 프로젝트를 한곳에서 편리하게 연결하고 관리하는 전용 허브입니다.
+      </p>
+
+      <!-- OCI IP Controller Bar -->
+      <div class="ip-control-bar">
+        <span class="ip-control-label">🌐 OCI Server Address:</span>
+        <div class="ip-input-wrapper">
+          <input type="text" id="oci-ip-input" class="ip-input" value="129.225.197.60" placeholder="129.225.197.60">
+        </div>
+        <button id="btn-update-ip" class="btn-update-ip">IP 적용</button>
+      </div>
+    </header>
+
+    <!-- Services Grid -->
+    <main>
+      <div id="cards-grid" class="cards-grid">
+        <!-- Dynamically rendered via script.js -->
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 Dev Workspace Hub. Built for OCI & Pokémantle Services.</p>
+    </footer>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
