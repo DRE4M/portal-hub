@@ -1,14 +1,11 @@
 /**
  * Hub Portal Service Configuration
- * OCI IP 및 포트 기반 서비스 링크 설정
+ * OCI IP 및 포트/서브패스 서비스 링크 설정
  */
 const PORTAL_CONFIG = {
   defaultOciIp: "129.225.197.60",
   title: "Dev Workspace Portal",
   subtitle: "Oracle Cloud Infrastructure & Microservices Hub",
-
-  // 서브패스 대신 포트 기반(예: :3000, :8002) 직통 연결 사용
-  useSubpathRouting: false,
 
   services: [
     {
@@ -40,8 +37,8 @@ const PORTAL_CONFIG = {
       title: "FastAPI Lab",
       category: "Backend API",
       icon: "⚡",
-      description: "FastAPI 비동기 백엔드 연습 및 API 서버",
-      port: 8002,
+      description: "FastAPI 비동기 백엔드 연습 및 API 서버 (80번 포트 Nginx 우회 연동)",
+      path: "/fastapi/",
       protocol: "http",
       badge: "Dev API",
       badgeColor: "emerald",

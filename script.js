@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const config = window.PORTAL_CONFIG || {
     defaultOciIp: "129.225.197.60",
-    useSubpathRouting: true,
     services: []
   };
 
@@ -27,11 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
       let fullUrl = "#";
       let displayUrl = "";
 
-      // 로컬 파일이나 localhost 일 경우 포트 기준, 도메인/서버 호스트일 경우 서브패스 기준 라우팅
-      if (config.useSubpathRouting && service.path && !isFileProtocol && currentHost !== "localhost") {
+      if (service.path && !isFileProtocol && currentHost !== "localhost") {
+        // 방화벽 우회용 80번 서브패스 주소 (예: yeardayhour.duckdns.org/fastapi/)
         fullUrl = `${window.location.protocol}//${currentHost}${service.path}`;
         displayUrl = `${currentHost}${service.path}`;
       } else {
+        // 기존 포트 직통 연결 (예: yeardayhour.duckdns.org:3000)
+        const targetPort = service.port || 80;
         fullUrl = service.port
           ? `${service.protocol}://${currentHost}:${service.port}`
           : `${service.protocol}://${currentHost}`;
